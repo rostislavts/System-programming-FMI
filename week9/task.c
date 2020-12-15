@@ -24,22 +24,18 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < UPPER_BOUND; i++) {
         lseek(fd, 0, 0);
         read(fd, &a, sizeof(int));
-        if (pid == 0)
+        if (pid == 0) {
             a += 1;
-        else
-            a += 2;
-        if (pid == 0)
             sprintf(buff, "     %d\n", a);
-        else 
+        } else {
+            a += 2;
             sprintf(buff, "%d\n", a);
+        }
         
-            
         write(1, buff, strlen(buff));
 
         lseek(fd, 0, 0);
         write(fd, &a, sizeof(int));
     }
-
-
 	return 0;
 }
